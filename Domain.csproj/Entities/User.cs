@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core;
+using Core.DomainException;
 using Domain.Validators;
 
 namespace Domain.Entities
