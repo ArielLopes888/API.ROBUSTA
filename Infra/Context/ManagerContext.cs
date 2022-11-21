@@ -17,10 +17,13 @@ namespace Infra.Context
         public ManagerContext(DbContextOptions<ManagerContext>options) : base(options)
         {}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ManagerContext(DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseSqlServer("");
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Data Source=ME003391\SQLEXPRESS;Initial Catalog=API.ROBUSTA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        //}
 
         public virtual DbSet<User> Users { get; set; }
 
