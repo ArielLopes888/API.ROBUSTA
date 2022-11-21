@@ -1,52 +1,33 @@
-using System.Reflection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(config =>
+namespace API.ROBUSTA
 {
-    config.SwaggerDoc("v1", new OpenApiInfo
+    public class Program
     {
-        Version = "AL2",
-        Title = "API ROBUSTA",
-        Description = "Aprendendo a construir uma API robusta e moderna utilizando .NET. Curso do Lucas Eschechola.",
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
 
-        //License = new OpenApiLicense
-        //{
-        //    Name = "Licença",
-        //    Url = new Uri("https://example.com/license")
-        //}
-    });
-    //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    //config.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
-});
-
-
-
-
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                    //if (context.HostingEnvironment.IsProduction())
+                    //{
+                    //    var builtConfig = config.Build();
+                    //    config.AddAzureKeyVault(
+                    //        builtConfig["AzureKeyVault:Vault"],
+                    //        builtConfig["AzureKeyVault:ClientId"],
+                    //        builtConfig["AzureKeyVault:ClientSecret"]);
+                    //}
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
 }
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
