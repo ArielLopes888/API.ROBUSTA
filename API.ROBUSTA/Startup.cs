@@ -3,8 +3,6 @@ using Infra.Context;
 using Infra.Interfaces;
 using Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
-using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Services.Interfaces;
 using Domain.Entities;
@@ -26,7 +24,9 @@ namespace API.ROBUSTA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
+            services.AddSingleton(new ManagerContext());
             services.AddSingleton(cfg => Configuration);
 
             #region Jwt
