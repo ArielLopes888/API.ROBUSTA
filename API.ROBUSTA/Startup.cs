@@ -67,7 +67,6 @@ namespace API.ROBUSTA
             #endregion
 
             #region Database
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<ManagerContext>(options => options
                 .UseSqlServer(Configuration["ConnectionStrings:API.ROBUSTA"])
                 .EnableSensitiveDataLogging()
