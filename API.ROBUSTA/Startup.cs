@@ -26,7 +26,6 @@ namespace API.ROBUSTA
         {
 
             services.AddControllers();
-            services.AddSingleton(new ManagerContext());
             services.AddSingleton(cfg => Configuration);
 
             #region Jwt
