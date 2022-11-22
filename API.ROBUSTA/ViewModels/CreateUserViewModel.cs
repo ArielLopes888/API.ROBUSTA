@@ -14,8 +14,9 @@ namespace API.ROBUSTA.ViewModels
         [Required(ErrorMessage = "O Email não pode ser vazio")]
         [MinLength(10, ErrorMessage = "O Email deve ter no mínimo 10 caracteres.")]
         [MaxLength(180, ErrorMessage = "O Email deve ter no máximo 180 caracteres.")]
-        [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\-)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", 
+        [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", 
             ErrorMessage = "O e-mail informado não é válido")]
+
         public string Email { get; set; }
 
 
