@@ -41,7 +41,7 @@ namespace Services.Services
         {
             var userExist = await _userRepository.Get(userDto.Id);
 
-            if (userExist != null)
+            if (userExist == null)
                 throw new DomainException("Não existe nenhum usuário cadastrado com esse Id");
 
             var user = _mapper.Map<User>(userDto);
