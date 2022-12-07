@@ -58,7 +58,7 @@ namespace API.ROBUSTA
             {
                 cfg.CreateMap<User, UserDto>().ReverseMap();
                 cfg.CreateMap<CreateUserViewModel, UserDto>().ReverseMap();
-                //cfg.CreateMap<UpdateUserViewModel, UserDto>().ReverseMap();
+                cfg.CreateMap<UpdateUserViewModel, UserDto>().ReverseMap();
             });
 
             services.AddSingleton(autoMapperConfig.CreateMapper());
