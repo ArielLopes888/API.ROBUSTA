@@ -12,6 +12,7 @@ using Services.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using API.ROBUSTA.Token;
 
 namespace API.ROBUSTA
 {
@@ -87,7 +88,7 @@ namespace API.ROBUSTA
 
             services.AddScoped<IUserService, UserServices>();
 
-            //services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
 
             #endregion
 
@@ -108,26 +109,26 @@ namespace API.ROBUSTA
                     },
                 });
 
-                //c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                //{
-                //    In = ParameterLocation.Header,
-                //    Description = "Por favor utilize Bearer <TOKEN>",
-                //    Name = "Authorization",
-                //    Type = SecuritySchemeType.ApiKey
-                //});
-                //c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                //{
-                //    new OpenApiSecurityScheme
-                //    {
-                //        Reference = new OpenApiReference
-                //        {
-                //            Type = ReferenceType.SecurityScheme,
-                //            Id = "Bearer"
-                //        }
-                //    },
-                //    new string[] { }
-                //}
-                //});
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Por favor utilize Bearer <TOKEN>",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] { }
+                }
+                });
             });
 
             #endregion
