@@ -14,8 +14,8 @@ namespace API.ROBUSTA
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.ConfigureAppConfiguration((context, config) =>
-                //{
+                .ConfigureAppConfiguration((context, config) =>
+                {
                 //    //if (context.HostingEnvironment.IsProduction())
                 //    //{
                 //    //    var builtConfig = config.Build();
@@ -24,7 +24,7 @@ namespace API.ROBUSTA
                 //    //        builtConfig["AzureKeyVault:ClientId"],
                 //    //        builtConfig["AzureKeyVault:ClientSecret"]);
                 //    //}
-                //})
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
